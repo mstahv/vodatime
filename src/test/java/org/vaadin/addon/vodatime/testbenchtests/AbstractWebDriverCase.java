@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.vaadin.addon.vodatime.demoandtestapp.TestServer;
 
-public class AbstractWebDriverTest {
+public class AbstractWebDriverCase {
 
     protected static final int TESTPORT = 5678;
     protected static final String BASEURL = "http://localhost:" + TESTPORT
@@ -15,7 +15,7 @@ public class AbstractWebDriverTest {
     protected WebDriver driver;
     private Server server;
 
-    public AbstractWebDriverTest() {
+    public AbstractWebDriverCase() {
         super();
     }
 

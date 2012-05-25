@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class SimpleTest extends AbstractWebDriverTest {
+public class SimpleTest extends AbstractWebDriverCase {
 
     @Test
     public void basic() {
