@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vaadin.addon</groupId>
 	<artifactId>vodatime</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>VodaTime</name>
 
 	<organization>
@@ -66,7 +66,8 @@
 							<Vaadin-Package-Version>1</Vaadin-Package-Version>
 
 							<!-- Comma-separated list of widgetsets in the package -->
-							<Vaadin-Widgetsets>org.vaadin.addon.vodadime.Widgetset</Vaadin-Widgetsets>
+							<!-- TODO figure out a way make this automatically configured -->
+							<Vaadin-Widgetsets>org.vaadin.addon.vodatime.Widgetset</Vaadin-Widgetsets>
 						</manifestEntries>
 					</archive>
 					<excludes>
@@ -175,7 +176,7 @@
 						<runTarget>http://localhost:9998/</runTarget>
 						<draftCompile>true</draftCompile>
 						<style>PRETTY</style>
-						<!-- We only need to compile the test widgetset -->
+						<!-- We only need to compile the test widgetset, if not defined gwt module will also compile the add-on widgetset as well -->
 						<module>org.vaadin.addon.vodatime.demoandtestapp.TestWidgetset</module>
 						<!-- If you do lots of e.g. plain css changes and don't wish to use 
 							hosted mode, you can force compile easily with uncommenting following rule -->
