@@ -14,6 +14,7 @@ import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.FormFieldFactory;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 
 public class BasicTest extends AbstractTest {
@@ -77,6 +78,16 @@ public class BasicTest extends AbstractTest {
                 sampleBean.setLocalDate(new LocalDate(2012, 5, 25));
                 form.setItemDataSource(new BeanItem<SampleBean>(sampleBean));
 
+            }
+        });
+        form.getFooter().addComponent(button);
+
+        button = new Button("Open component property editor");
+        button.addListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                ComponentEditor componentEditor = new ComponentEditor(
+                        getContent());
+                addWindow(componentEditor);
             }
         });
         form.getFooter().addComponent(button);
