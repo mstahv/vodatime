@@ -14,7 +14,6 @@ import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.FormFieldFactory;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 
 public class BasicTest extends AbstractTest {
