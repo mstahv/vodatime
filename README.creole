@@ -10,7 +10,7 @@ A simple server side component that utilizes PropertyTranslator to provide suppo
 === LocalDateBox ===
 A supa simple component for LocalDate type. Also has own simple client side implementation based on GWT's DateBox.
 
-= Development = 
+= Instructions for add-on developers = 
 
 Project is built with Maven so it should be IDE agnostic and you should manage with basic maven skills without instructions. Basic steps during development are discussed below. Most actions can be easily accessed via IDE. Eclipse users should install m2e plugin.
 
@@ -84,7 +84,7 @@ mvn -e exec:java -Dexec.mainClass="org.vaadin.addon.vodatime.demoandtestapp.Test
 
 Tests are loaded via reflection on each page load. Accessing http://localhost:9998/BasicTest will load a new instance of test class org.vaadin.addon.vodatime.demoandtestapp.BasicTest
 
-== GWT development ==
+== Client side development aka GWT development ==
 
 The client side code is developed with GWT. Just recompiling the widgetset happens with following command:
 {{{
@@ -92,5 +92,4 @@ mvn gwt:compile
 }}}
 
 The development mode (aka hosted mode) is launched with target "gwt:debug" or "gwt:run". For the former you will attach a remote debugger. E.g. in e.g. Eclipse that is simple and m2e automatically sets the correct classpath.
-
 
