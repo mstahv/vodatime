@@ -91,5 +91,5 @@ The client side code is developed with GWT. Just recompiling the widgetset happe
 mvn vaadin:compile
 }}}
 
-The development mode (aka hosted mode) is launched with target "gwt:debug" or "gwt:run". For the former you will attach a remote debugger. E.g. in e.g. Eclipse that is simple and m2e automatically sets the correct classpath.
+The development mode (aka hosted mode) is launched with target "vaadin:debug" or "vaadin:run". For the former you will attach a remote debugger. E.g. in e.g. Eclipse that is simple and m2e automatically sets the correct classpath. "Superdevmode" can be launched with target "vaadin:run-codeserver".
 
