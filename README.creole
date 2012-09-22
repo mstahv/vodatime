@@ -88,7 +88,7 @@ Tests are loaded via reflection on each page load. Accessing http://localhost:99
 
 The client side code is developed with GWT. Just recompiling the widgetset happens with following command:
 {{{
-mvn gwt:compile
+mvn vaadin:compile
 }}}
 
 The development mode (aka hosted mode) is launched with target "gwt:debug" or "gwt:run". For the former you will attach a remote debugger. E.g. in e.g. Eclipse that is simple and m2e automatically sets the correct classpath.

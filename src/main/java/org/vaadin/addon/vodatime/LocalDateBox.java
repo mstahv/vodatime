@@ -1,38 +1,26 @@
 package org.vaadin.addon.vodatime;
 
-import java.util.Map;
-
-import org.joda.time.LocalDate;
-import org.vaadin.addon.vodatime.client.ui.VLocalDateBox;
-
-import com.vaadin.terminal.PaintException;
-import com.vaadin.terminal.PaintTarget;
+import com.vaadin.shared.AbstractFieldState;
 import com.vaadin.ui.AbstractField;
-import com.vaadin.ui.ClientWidget;
+import java.util.Date;
+import org.joda.time.LocalDate;
+import org.vaadin.addon.vodatime.client.vaadin.LocalDateBoxRpc;
+import org.vaadin.addon.vodatime.client.vaadin.LocalDateBoxState;
 
-@ClientWidget(VLocalDateBox.class)
 public class LocalDateBox extends AbstractField {
 
-    @Override
-    public Class<?> getType() {
-        return LocalDate.class;
-    }
-
-    @Override
-    public void paintContent(PaintTarget target) throws PaintException {
-        super.paintContent(target);
-
-        if (getValue() != null) {
-            // client-server communication as epoc time
-            target.addVariable(this, "v", getValue().toDate().getTime());
-        }
-    }
-
-    @Override
-    public void changeVariables(Object source, Map<String, Object> variables) {
-        super.changeVariables(source, variables);
-        Long l = (Long) variables.get("v");
-        setValue(new LocalDate(l), true);
+    public LocalDateBox() {
+        registerRpc(new LocalDateBoxRpc() {
+            @Override
+            public void setValue(Long l) {
+                if (l == null) {
+                    LocalDateBox.this.setValue(null);
+                } else {
+                    LocalDate fromDateFields = LocalDate.fromDateFields(new Date(l));
+                    LocalDateBox.this.setValue(fromDateFields);
+                }
+            }
+        });
     }
 
     @Override
@@ -40,4 +28,21 @@ public class LocalDateBox extends AbstractField {
         return (LocalDate) super.getValue();
     }
 
+    @Override
+    public Class getType() {
+        return LocalDate.class;
+    }
+
+    @Override
+    public void beforeClientResponse(boolean initial) {
+        super.beforeClientResponse(initial);
+        LocalDate value = getValue();
+        getState().value = value == null? null : value.toDate().getTime();
+    }
+    
+    @Override
+    protected LocalDateBoxState getState() {
+        return (LocalDateBoxState) super.getState();
+    }
+    
 }

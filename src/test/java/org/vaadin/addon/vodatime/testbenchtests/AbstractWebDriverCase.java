@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.vaadin.addon.vodatime.demoandtestapp.TestServer;
+import org.vaadin.addon.vodatime.demoandtestapp.TServer;
 
 public class AbstractWebDriverCase {
 
@@ -22,7 +22,7 @@ public class AbstractWebDriverCase {
     @Before
     public void setUp() {
         try {
-            server = TestServer.startServer(TESTPORT);
+            server = TServer.startServer(TESTPORT);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

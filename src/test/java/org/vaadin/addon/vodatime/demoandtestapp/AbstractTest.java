@@ -1,24 +1,18 @@
 package org.vaadin.addon.vodatime.demoandtestapp;
 
+import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
 
-public abstract class AbstractTest extends Window {
+public abstract class AbstractTest extends UI {
 
     private VerticalLayout content;
 
     public AbstractTest() {
         content = new VerticalLayout();
         setContent(content);
-    }
-
-    @Override
-    public void attach() {
-        super.attach();
-        setup();
-        showNotification(getClass().getSimpleName(), getDescription(),
-                Notification.TYPE_WARNING_MESSAGE);
     }
 
     protected void setup() {
@@ -29,5 +23,14 @@ public abstract class AbstractTest extends Window {
     }
 
     abstract Component getTestComponent();
+
+    @Override
+    protected void init(VaadinRequest request) {
+        setup();
+        Notification.show(getDescription(),
+                Notification.Type.WARNING_MESSAGE);
+    }
+    
+    
 
 }
