@@ -15,27 +15,34 @@
  */
 package org.vaadin.addon.vodatime.demoandtestapp;
 
-import com.vaadin.server.AbstractUIProvider;
-import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.UIClassSelectionEvent;
+import com.vaadin.server.UIProvider;
 import com.vaadin.ui.UI;
 
 /**
  *
  * @author mattitahvonenitmill
  */
-public class AbstractUIProviderImpl extends AbstractUIProvider {
+public class AbstractUIProviderImpl extends UIProvider {
 
-    public AbstractUIProviderImpl() {
-    }
+    
+    Class<? extends UI> dirtyHack;
     
     @Override
-    public Class<? extends UI> getUIClass(VaadinRequest request) {
-        String name = request.getRequestPathInfo().substring(1);
+    public Class<? extends UI> getUIClass(UIClassSelectionEvent event) {
+        String name = event.getRequest().getRequestPathInfo();
+        if(name == null) {
+            return dirtyHack;
+        }
+        if(name.startsWith("/")) {
+            name = name.substring(1);
+        }
         if (!"".equals(name) && !name.contains(".ico") && name.matches("[A-Z][a-z].*")) {
             try {
                 String className = getClass().getPackage().getName() + "." + name;
                 Class<? extends UI> forName = (Class<? extends UI>) Class.forName(className);
                 if (forName != null) {
+                    dirtyHack = forName;
                     return forName;
                 }
             } catch (ClassNotFoundException e) {
@@ -43,6 +50,7 @@ public class AbstractUIProviderImpl extends AbstractUIProvider {
                 e.printStackTrace();
             }
         }
+        dirtyHack = TListUi.class;
         return TListUi.class;
     }
     

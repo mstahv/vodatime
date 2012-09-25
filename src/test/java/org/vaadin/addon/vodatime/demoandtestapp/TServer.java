@@ -1,21 +1,9 @@
 package org.vaadin.addon.vodatime.demoandtestapp;
 
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
-import com.vaadin.server.AbstractUIProvider;
-import com.vaadin.server.DeploymentConfiguration;
 import com.vaadin.server.ServiceException;
-import com.vaadin.server.UIProvider;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinServlet.ServletService;
 import com.vaadin.server.VaadinSessionInitializationListener;
 import com.vaadin.server.VaadinSessionInitializeEvent;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.UI;
 import java.io.File;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -56,20 +44,16 @@ public class TServer {
             @Override
             public void init(ServletConfig servletConfig) throws ServletException {
                 super.init(servletConfig);
-
-            }
-
-            @Override
-            protected ServletService createServletService(DeploymentConfiguration deploymentConfiguration) {
-                final ServletService createServletService = super.createServletService(deploymentConfiguration);
-                createServletService.addVaadinSessionInitializationListener(new VaadinSessionInitializationListener() {
+                
+                getService().addVaadinSessionInitializationListener(new VaadinSessionInitializationListener() {
                     @Override
                     public void vaadinSessionInitialized(VaadinSessionInitializeEvent event) throws ServiceException {
-                        event.getVaadinSession().addUIProvider(uiprovider);
+                        getService().addUIProvider(event.getSession(), uiprovider);
                     }
                 });
-                return createServletService;
+
             }
+            
         };
 
         ServletHolder servletHolder = new ServletHolder(
