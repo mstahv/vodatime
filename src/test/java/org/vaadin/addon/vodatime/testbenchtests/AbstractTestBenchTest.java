@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.vaadin.addon.vodatime.demoandtestapp.TestServer;
+import org.vaadin.addon.vodatime.demoandtestapp.TServer;
 
 import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.TestBench;
@@ -20,7 +20,7 @@ public class AbstractTestBenchTest {
     protected static final String BASEURL = "http://localhost:" + TESTPORT
             + "/";
     private static final File REF_IMAGE_ROOT = new File(
-            "src/test/resources/screenshots/reference");
+            "src/test/resources/screenshots");
     protected WebDriver driver;
     protected TestBenchCommands testBench;
     private Server server;
@@ -31,14 +31,13 @@ public class AbstractTestBenchTest {
 
     @Before
     public void setUp() {
-        Parameters.setScreenshotErrorDirectory("target/testbench/errors/");
-        Parameters.setScreenshotComparisonTolerance(0.01);
+        Parameters.setScreenshotReferenceDirectory("src/test/resources/screenshots");
+        Parameters.setScreenshotErrorDirectory("target");
         Parameters.setCaptureScreenshotOnFailure(true);
         try {
-            server = TestServer.startServer(TESTPORT);
+            server = TServer.startServer(TESTPORT);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }

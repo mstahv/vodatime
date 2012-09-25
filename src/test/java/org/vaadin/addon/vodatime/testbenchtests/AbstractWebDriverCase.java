@@ -7,6 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.vaadin.addon.vodatime.demoandtestapp.TServer;
 
+/**
+ * This abstract class can be used if one e.g. cannot afford TestBench license.
+ *
+ */
 public class AbstractWebDriverCase {
 
     protected static final int TESTPORT = 5678;

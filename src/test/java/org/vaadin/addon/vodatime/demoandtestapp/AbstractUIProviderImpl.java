@@ -21,7 +21,6 @@ import com.vaadin.ui.UI;
 
 /**
  *
- * @author mattitahvonenitmill
  */
 public class AbstractUIProviderImpl extends UIProvider {
 
