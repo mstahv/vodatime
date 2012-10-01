@@ -1,17 +1,20 @@
 package org.vaadin.addon.vodatime.demoandtestapp;
 
-import com.vaadin.server.ServiceException;
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinSessionInitializationListener;
-import com.vaadin.server.VaadinSessionInitializeEvent;
 import java.io.File;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+
+import com.vaadin.server.ServiceException;
+import com.vaadin.server.SessionInitEvent;
+import com.vaadin.server.SessionInitListener;
+import com.vaadin.server.VaadinServlet;
 
 public class TServer {
 
@@ -44,14 +47,12 @@ public class TServer {
             @Override
             public void init(ServletConfig servletConfig) throws ServletException {
                 super.init(servletConfig);
-                
-                getService().addVaadinSessionInitializationListener(new VaadinSessionInitializationListener() {
+                getService().addSessionInitListener(new SessionInitListener() {
                     @Override
-                    public void vaadinSessionInitialized(VaadinSessionInitializeEvent event) throws ServiceException {
-                        getService().addUIProvider(event.getSession(), uiprovider);
+                    public void sessionInit(SessionInitEvent event) throws ServiceException {
+                        event.getSession().addUIProvider(uiprovider);
                     }
                 });
-
             }
             
         };
