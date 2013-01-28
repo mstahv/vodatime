@@ -1,5 +1,7 @@
 package org.vaadin.addon.vodatime;
 
+import java.util.Date;
+
 import org.joda.time.DateTime;
 
 import com.vaadin.ui.DateField;
@@ -21,7 +23,7 @@ public class VodaDateField extends DateField {
      * @param dt
      */
     public void setDateTime(DateTime dt) {
-        setValue(translator.translateFromDatasource(dt));
+        setValue((Date) translator.translateFromDatasource(dt));
     }
 
     /**

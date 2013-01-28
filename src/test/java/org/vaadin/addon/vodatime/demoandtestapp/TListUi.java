@@ -62,7 +62,7 @@ public class TListUi extends UI {
         });
         table.setSizeFull();
         table.setColumnExpandRatio("description", 1);
-        addComponent(table);
+        setContent(table);
     }
 
     private Container listTestClasses() {

@@ -5,7 +5,6 @@ import java.util.Date;
 import org.joda.time.DateTime;
 import org.vaadin.addon.propertytranslator.PropertyTranslator;
 
-@SuppressWarnings("unchecked")
 public class JodaTranslator extends PropertyTranslator {
 
     @Override
@@ -21,7 +20,7 @@ public class JodaTranslator extends PropertyTranslator {
     }
 
     @Override
-    public Class getType() {
+    public Class<Date> getType() {
         return Date.class;
     }
 

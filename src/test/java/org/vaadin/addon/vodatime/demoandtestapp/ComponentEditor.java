@@ -26,7 +26,7 @@ class ComponentEditor extends Window {
     private Tree tree;
     private HorizontalSplitPanel horizontalSplitPanel;
 
-    public ComponentEditor(ComponentContainer root) {
+    public ComponentEditor(Component root) {
         setCaption("Component editor");
         setWidth("600px");
         setHeight("250px");
@@ -38,7 +38,7 @@ class ComponentEditor extends Window {
         setContent(horizontalSplitPanel);
         tree = new Tree();
         horizontalSplitPanel.setFirstComponent(tree);
-        add(root);
+        setContent(root);
         tree.setSelectable(true);
         tree.setImmediate(true);
         tree.addListener(new Property.ValueChangeListener() {

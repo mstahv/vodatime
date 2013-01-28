@@ -1,13 +1,14 @@
 package org.vaadin.addon.vodatime;
 
-import com.vaadin.shared.AbstractFieldState;
-import com.vaadin.ui.AbstractField;
 import java.util.Date;
+
 import org.joda.time.LocalDate;
 import org.vaadin.addon.vodatime.client.vaadin.LocalDateBoxRpc;
 import org.vaadin.addon.vodatime.client.vaadin.LocalDateBoxState;
 
-public class LocalDateBox extends AbstractField {
+import com.vaadin.ui.AbstractField;
+
+public class LocalDateBox extends AbstractField<LocalDate> {
 
     public LocalDateBox() {
         registerRpc(new LocalDateBoxRpc() {
@@ -29,7 +30,7 @@ public class LocalDateBox extends AbstractField {
     }
 
     @Override
-    public Class getType() {
+    public Class<LocalDate> getType() {
         return LocalDate.class;
     }
 

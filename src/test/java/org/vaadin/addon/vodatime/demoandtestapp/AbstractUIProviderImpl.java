@@ -29,7 +29,7 @@ public class AbstractUIProviderImpl extends UIProvider {
     
     @Override
     public Class<? extends UI> getUIClass(UIClassSelectionEvent event) {
-        String name = event.getRequest().getRequestPathInfo();
+        String name = event.getRequest().getPathInfo();
         if(name == null) {
             return dirtyHack;
         }

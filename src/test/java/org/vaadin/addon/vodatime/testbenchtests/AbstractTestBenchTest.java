@@ -5,7 +5,6 @@ import java.io.File;
 import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.vaadin.addon.vodatime.demoandtestapp.TServer;
@@ -59,9 +58,8 @@ public class AbstractTestBenchTest {
 
     protected void startBrowser() {
         driver = TestBench.createDriver(new FirefoxDriver());
-        // dimension includes browser chrome
-        driver.manage().window().setSize(new Dimension(800, 600));
         testBench = (TestBenchCommands) driver;
+        testBench.resizeViewPortTo(640, 400);
     }
 
     public File getReferenceImage(String name) {
