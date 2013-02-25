@@ -3,6 +3,7 @@ package org.vaadin.addon.vodatime;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -20,12 +21,12 @@ public class TestJodaTranslator {
         JodaTranslator jodaTranslator = new JodaTranslator();
 
         Date convertedToJava = (Date) jodaTranslator
-                .translateFromDatasource(nowJodaDateTime);
+                .convertToPresentation(nowJodaDateTime, Locale.getDefault());
 
         assertEquals(nowJavaDate, convertedToJava);
 
         DateTime convertedToJoda = (DateTime) jodaTranslator
-                .translateToDatasource(nowJavaDate);
+                .convertToModel(nowJavaDate,Locale.getDefault());
 
         assertEquals(nowJodaDateTime, convertedToJoda);
 

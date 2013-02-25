@@ -25,11 +25,12 @@ public class SimpleTest extends AbstractTestBenchTest {
 
         List<WebElement> inputs = driver.findElements(By.tagName("input"));
 
-        String[] expetedValues = { "5/25/12 10:12 AM", "2012 May 25", "foo" };
+        String[] expetedValues = {"2012 May 25", "foo" };
 
         for (int i = 0; i < expetedValues.length; i++) {
             String expected = expetedValues[i];
-            Assert.assertEquals(expected, inputs.get(i).getAttribute("value"));
+            String real = inputs.get(i).getAttribute("value");
+			Assert.assertEquals(expected, real);
         }
         
         // Currently fails due to #10860 !?

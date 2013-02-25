@@ -1,27 +1,34 @@
 package org.vaadin.addon.vodatime;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.joda.time.DateTime;
-import org.vaadin.addon.propertytranslator.PropertyTranslator;
 
-public class JodaTranslator extends PropertyTranslator {
+import com.vaadin.data.util.converter.Converter;
 
-    @Override
-    public Object translateFromDatasource(Object value) {
-        DateTime dt = (DateTime) value;
-        return new Date(dt.getMillis());
-    }
+public class JodaTranslator implements Converter<Date, DateTime> {
 
-    @Override
-    public Object translateToDatasource(Object formattedValue) throws Exception {
-        Date d = (Date) formattedValue;
-        return new DateTime(d.getTime());
-    }
 
-    @Override
-    public Class<Date> getType() {
-        return Date.class;
-    }
+	@Override
+	public Class<DateTime> getModelType() {
+		return DateTime.class;
+	}
+
+	@Override
+	public Class<Date> getPresentationType() {
+		return Date.class;
+	}
+	@Override
+	public DateTime convertToModel(Date value, Locale locale)
+			throws com.vaadin.data.util.converter.Converter.ConversionException {
+        return new DateTime(value.getTime());
+	}
+
+	@Override
+	public Date convertToPresentation(DateTime value, Locale locale)
+			throws com.vaadin.data.util.converter.Converter.ConversionException {
+        return new Date(value.getMillis());
+	}
 
 }

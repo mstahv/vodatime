@@ -3,7 +3,6 @@ package org.vaadin.addon.vodatime.demoandtestapp;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.vaadin.addon.vodatime.LocalDateBox;
-import org.vaadin.addon.vodatime.VodaDateField;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -25,7 +24,8 @@ public class BasicTest extends AbstractTest {
             Field f = null;
             Class<?> type = item.getItemProperty(propertyId).getType();
             if (type == DateTime.class) {
-                f = new VodaDateField();
+            	// VodaDateField is no more as it was tricky to implement
+//                f = new VodaDateField();
             } else if (type == LocalDate.class) {
                 f = new LocalDateBox();
             }
@@ -73,7 +73,7 @@ public class BasicTest extends AbstractTest {
 
                 SampleBean sampleBean = new SampleBean();
                 sampleBean.setText("foo");
-                sampleBean.setDateTime(new DateTime(2012, 5, 25, 10, 12));
+//                sampleBean.setDateTime(new DateTime(2012, 5, 25, 10, 12));
                 sampleBean.setLocalDate(new LocalDate(2012, 5, 25));
                 form.setItemDataSource(new BeanItem<SampleBean>(sampleBean));
 
