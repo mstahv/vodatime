@@ -18,12 +18,17 @@ package org.vaadin.addon.vodatime.demoandtestapp;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.event.FieldEvents.TextChangeEvent;
+import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
 import java.io.File;
 
 /**
@@ -31,7 +36,7 @@ import java.io.File;
  * @author mattitahvonenitmill
  */
 public class TListUi extends UI {
-    private Container testClassess;
+    private IndexedContainer testClassess;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -62,10 +67,23 @@ public class TListUi extends UI {
         });
         table.setSizeFull();
         table.setColumnExpandRatio("description", 1);
-        setContent(table);
+        VerticalLayout verticalLayout = new VerticalLayout();
+        TextField filter = new TextField();
+        filter.addTextChangeListener(new TextChangeListener() {
+            @Override
+            public void textChange(TextChangeEvent event) {
+                String text = event.getText();
+                testClassess.removeAllContainerFilters();
+                testClassess.addContainerFilter("name", text, true, false);
+            }
+        });
+        verticalLayout.addComponent(filter);
+        filter.focus();
+        verticalLayout.addComponent(table);
+        setContent(verticalLayout);
     }
 
-    private Container listTestClasses() {
+    private IndexedContainer listTestClasses() {
         IndexedContainer indexedContainer = new IndexedContainer();
         indexedContainer.addContainerProperty("name", String.class, "");
         indexedContainer.addContainerProperty("description", String.class, "");
