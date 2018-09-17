@@ -1,3 +1,8 @@
+{{https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg|Published on Vaadin  Directory}}
+{{https://img.shields.io/vaadin-directory/star/vodatime.svg|Stars on Vaadin Directory}}
+
+[[https://vaadin.com/directory/component/vodatime|Vodatime on Vaadin Directory]]
+
 = Vodatime Add-On project =
 
 Note, this add-on has born as an example of "perfect Vaadin Add-On project setup". Its main purpose is to serva as a good example and improve overall build quality of various Vaadin Add-ons. This way I hope it eventually make contributions easier and more effortless on all Vaadin Add-ons. Still, the addon itself might already on its early steps be valid add-on for Vaadin Developers using Joda time.
